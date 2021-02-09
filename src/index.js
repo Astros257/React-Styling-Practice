@@ -5,3 +5,32 @@
 //Apply the "heading" style in the styles.css
 //Dynamically change the color of the h1 using inline css styles.
 //Morning = red, Afternoon = green, Night = blue.
+import React from "react";
+import ReactDom from "react-dom";
+
+var greetingStyle = {
+  color: "red"
+};
+
+const date = new Date();
+var greeting = "";
+var currentTime = date.getHours();
+
+if (currentTime < 12) {
+  greeting = "Good Morning";
+} else if (currentTime < 18) {
+  greeting = "Good Afternoon";
+  greetingStyle.color = "green";
+} else {
+  greeting = "Good Evening";
+  greetingStyle.color = "blue";
+}
+
+ReactDom.render(
+  <div>
+    <h1 className="heading" style={greetingStyle}>
+      {greeting}
+    </h1>
+  </div>,
+  document.getElementById("root")
+);
